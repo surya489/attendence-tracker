@@ -1,3 +1,65 @@
-.App {
-  text-align: center;
+/* Common CSS Start */
+
+.flex {
+  display: flex !important;
 }
+
+.items-center {
+  align-items: center;
+}
+
+.gap-2 {
+  gap: 6px;
+}
+
+/* Common CSS Start */
+
+.App {
+  display: flex;
+  gap: 10px;
+  min-height: 100vh;
+}
+
+/* Side-Bar Start */
+
+.sidebarWrap {
+  width: 25%;
+}
+
+.wrapper {
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-right: 1px solid #80808048;
+}
+
+.navHeader img {
+  padding-bottom: 20px;
+}
+
+.navHeader .linkWrapper a, .wrapper .navFooter a {
+  display: block;
+  padding: 10px 0;
+  padding-top: 0;
+}
+
+.navHeader .linkWrapper a:first-child, .wrapper .navFooter a:first-child {
+  padding: 10px 0;
+}
+
+.navHeader .linkWrapper a:last-child, .wrapper .navFooter a:last-child {
+  padding-bottom: 0;
+}
+
+/* Side-Bar Start */
+
+/* Content Start */
+
+.contentWrap {
+  width: 75%;
+  padding: 40px 20px;
+}
+
+/* Content Start */
