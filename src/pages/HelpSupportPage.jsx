@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { BookOpenText, CircleHelp, Mail, MessageSquareText, Phone } from 'lucide-react';
 import { SurfaceCard } from '../components/common/SurfaceCard';
 
@@ -22,6 +22,37 @@ const faqs = [
 
 export const HelpSupportPage = () => {
   const [openFaq, setOpenFaq] = useState(faqs[0].id);
+  const todayLabel = useMemo(
+    () =>
+      new Date(Date.now()).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+      }),
+    []
+  );
+
+  const guides = useMemo(
+    () =>
+      [
+        {
+          id: 'g1',
+          title: 'Attendance Workflow Guide',
+          description: 'Understand end-to-end flow from check-in to approval and reporting.',
+        },
+        {
+          id: 'g2',
+          title: 'Role Permission Matrix',
+          description: 'View permission boundaries for Admin, Manager, and Employee roles.',
+        },
+        {
+          id: 'g3',
+          title: `${todayLabel} Release Notes`,
+          description: 'New dashboard shell and all page-level UIs are now available.',
+        },
+      ].filter((item) => item.title && item.description),
+    [todayLabel]
+  );
 
   return (
     <section className="helpPage">
@@ -29,17 +60,17 @@ export const HelpSupportPage = () => {
         <SurfaceCard className="helpCard elevatedCard">
           <Mail size={18} />
           <h3>Email Support</h3>
-          <p>support@mortgagecrm.com</p>
+          <p>No data available</p>
         </SurfaceCard>
         <SurfaceCard className="helpCard elevatedCard">
           <Phone size={18} />
           <h3>Call Support</h3>
-          <p>+91 98765 43210</p>
+          <p>No data available</p>
         </SurfaceCard>
         <SurfaceCard className="helpCard elevatedCard">
           <MessageSquareText size={18} />
           <h3>Live Chat</h3>
-          <p>Mon-Sat • 9 AM to 7 PM</p>
+          <p>No data available</p>
         </SurfaceCard>
       </div>
 
@@ -66,18 +97,12 @@ export const HelpSupportPage = () => {
           <h3>Guides & Release Notes</h3>
         </div>
         <div className="guideList">
-          <div>
-            <h4>Attendance Workflow Guide</h4>
-            <p>Understand end-to-end flow from check-in to approval and reporting.</p>
-          </div>
-          <div>
-            <h4>Role Permission Matrix</h4>
-            <p>View permission boundaries for Admin, Manager, and Employee roles.</p>
-          </div>
-          <div>
-            <h4>February 28, 2026 Release Notes</h4>
-            <p>New dashboard shell and all page-level UIs are now available.</p>
-          </div>
+          {guides.map((guide) => (
+            <div key={guide.id}>
+              <h4>{guide.title}</h4>
+              <p>{guide.description}</p>
+            </div>
+          ))}
         </div>
       </article>
     </section>

@@ -41,7 +41,7 @@ export const CrmShell = () => {
   const [isAttendanceOpen, setIsAttendanceOpen] = useState(true);
 
   const pageMeta = {
-    '/': { title: 'Home Dashboard', subtitle: 'Mortgage CRM snapshot and team pulse' },
+    '/': { title: 'Home Dashboard', subtitle: 'CRM snapshot and team pulse' },
     '/staff-attendance': { title: 'Staff Attendance', subtitle: 'Track attendance across departments and shifts' },
     '/my-attendance': { title: 'My Attendance', subtitle: 'Personal check-in, check-out, and leave logs' },
     '/labour-attendance': { title: 'Labour Attendance', subtitle: 'Daily labour tracking with team level controls' },
