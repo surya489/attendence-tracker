@@ -67,3 +67,53 @@
 }
 
 /* Content Start */
+
+/* Components Start */
+
+/* Nav-Bar Start */
+
+.searchInputWrapper {
+  background: #e7e7e7;
+  padding: 10px 20px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.navbarWrapper {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #80808048;
+}
+
+.searchInput {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.searchIcon {
+  /* position: absolute; */
+  color: #3d3232;
+}
+
+.iconsWrapper, .iconList {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.profileIcon {
+  border-left: 1px solid #80808048;
+  padding-left: 14px;
+}
+
+/* Nav-Bar End */
+
+/* Components End */
