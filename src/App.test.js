@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import { HomePage } from './pages/HomePage';
 
-test('renders labour attendance heading', () => {
-  render(<App />);
-  const headingElement = screen.getByRole('heading', { name: /labour attendance/i, level: 2 });
+test('renders home page panel', () => {
+  render(<HomePage />);
+  const headingElement = screen.getByRole('heading', { name: /loan pipeline/i, level: 3 });
   expect(headingElement).toBeInTheDocument();
 });

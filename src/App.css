@@ -1,61 +1,108 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Outfit:wght@600;700;800&display=swap');
 
 :root {
-  --bg: #edf2f8;
-  --panel: #f7f9fc;
+  --bg: #eef4f2;
+  --bg-soft: #f7faf9;
+  --panel: #f9fcfb;
   --card: #ffffff;
-  --line: #d8e0eb;
-  --text: #1f2530;
-  --muted: #697486;
-  --blue: #2d7ff9;
-  --blue-soft: #e9f1ff;
-  --green: #28ad63;
-  --green-soft: #ebfff3;
-  --red: #e15656;
-  --red-soft: #fff1f1;
-  --orange: #f0a146;
-  --orange-soft: #fff7e9;
+  --line: #d7e4df;
+  --text: #20312c;
+  --muted: #6a7f78;
+  --accent: #4f8a7a;
+  --accent-soft: #e7f5f1;
+  --success: #2f9b66;
+  --warn: #c08a3f;
+  --danger: #d65f5f;
+  --info: #4279b7;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
-  font-family: 'Manrope', sans-serif;
   color: var(--text);
-  background: radial-gradient(circle at 15% 10%, #fff, var(--bg) 45%, #dfe8f5 100%);
+  font-family: 'Manrope', sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%, #ffffff 0%, #f4faf8 42%, #e7f0ec 100%);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 button,
-input {
+input,
+select,
+textarea {
   font-family: inherit;
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Outfit', 'Manrope', sans-serif;
+  letter-spacing: 0.01em;
+}
+
+p,
+span,
+label,
+td,
+th,
+time {
+  font-family: 'Manrope', sans-serif;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .crmApp {
   min-height: 100vh;
   display: flex;
   align-items: stretch;
-  padding: 20px;
-  gap: 16px;
+  gap: 18px;
+  padding: 18px;
+  max-width: 1640px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .crmSidebar {
   width: 300px;
-  background: linear-gradient(180deg, #ffffff, #f4f7fb);
+  background: linear-gradient(180deg, #ffffff, #f6fbf9);
   border: 1px solid var(--line);
-  border-radius: 22px;
+  border-radius: 24px;
   padding: 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: width 0.25s ease;
   overflow: hidden;
+  transition: width 0.28s ease;
 }
 
 .crmSidebar.isCollapsed {
-  width: 86px;
+  width: 90px;
 }
 
 .crmSidebar.isCollapsed .brandText,
@@ -63,6 +110,20 @@ input {
 .crmSidebar.isCollapsed .menuItem svg:last-child,
 .crmSidebar.isCollapsed .subMenuWrap {
   display: none;
+}
+
+.crmSidebar.isCollapsed .sidebarTop {
+  flex-direction: column;
+  align-items: center;
+}
+
+.crmSidebar.isCollapsed .brandWrap {
+  justify-content: center;
+}
+
+.crmSidebar.isCollapsed .menuItem {
+  justify-content: center;
+  padding-inline: 8px;
 }
 
 .sidebarTop {
@@ -79,20 +140,21 @@ input {
 }
 
 .brandLogo {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #2d7ff9, #69a2ff);
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: linear-gradient(130deg, #4f8a7a, #78ab9f);
   color: #fff;
+  font-size: 14px;
   font-weight: 800;
   display: grid;
   place-items: center;
+  box-shadow: 0 8px 14px rgba(79, 138, 122, 0.35);
 }
 
 .brandText h1 {
   margin: 0;
   font-size: 16px;
-  line-height: 1.2;
 }
 
 .brandText p {
@@ -106,18 +168,28 @@ input {
   gap: 8px;
 }
 
+.menuFooter {
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
 .menuItem {
   width: 100%;
   border: 0;
-  background: transparent;
   border-radius: 12px;
+  background: transparent;
   padding: 10px 12px;
   display: flex;
   align-items: center;
   gap: 10px;
+  color: #31433d;
   font-size: 14px;
-  color: var(--text);
+  font-weight: 600;
   cursor: pointer;
+}
+
+.menuItem svg {
+  opacity: 0.9;
 }
 
 .menuItem svg:last-child {
@@ -125,9 +197,8 @@ input {
 }
 
 .menuItem.isActive {
-  background: var(--blue-soft);
-  color: var(--blue);
-  font-weight: 700;
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
 .subMenuWrap {
@@ -140,51 +211,60 @@ input {
 .subMenuItem {
   border: 0;
   background: transparent;
-  text-align: left;
-  padding: 8px 10px;
   border-radius: 9px;
-  font-size: 13px;
+  text-align: left;
   color: var(--muted);
-  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 10px;
 }
 
 .subMenuItem.isSelected {
-  color: var(--blue);
-  font-weight: 700;
-  background: #f1f6ff;
+  color: var(--accent);
+  background: #edf8f4;
 }
 
 .crmMain {
   flex: 1;
   min-width: 0;
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden;
 }
 
 .crmHeader {
-  border-radius: 22px;
+  border-radius: 24px;
   padding: 18px 22px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.75);
+  gap: 16px;
   border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(8px);
 }
 
 .headerTitle h2 {
   margin: 0;
-  font-size: 24px;
+  font-size: 26px;
+  line-height: 1.1;
 }
 
 .headerTitle p {
-  margin: 4px 0 0;
+  margin: 6px 0 0;
   color: var(--muted);
   font-size: 13px;
+  font-weight: 600;
 }
 
 .headerActions {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.mobileMenuBtn {
+  display: none;
 }
 
 .searchBox {
@@ -199,9 +279,9 @@ input {
 
 .searchBox input {
   border: 0;
-  outline: none;
-  min-width: 240px;
+  min-width: 260px;
   font-size: 13px;
+  color: #34463f;
 }
 
 .profileBtn,
@@ -209,8 +289,7 @@ input {
   border: 1px solid var(--line);
   background: #fff;
   border-radius: 12px;
-  color: var(--text);
-  cursor: pointer;
+  color: #2f413b;
 }
 
 .iconBtn {
@@ -218,10 +297,15 @@ input {
   height: 36px;
   display: grid;
   place-items: center;
+  cursor: pointer;
+}
+
+.iconBtn.mobileMenuBtn {
+  display: none;
 }
 
 .profileBtn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
@@ -229,328 +313,907 @@ input {
   font-weight: 700;
 }
 
-.dashboardCard {
-  margin-top: 16px;
-  background: var(--panel);
+.sidebarBackdrop {
+  display: none;
+}
+
+.iconOrb {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: inline-grid;
+  place-items: center;
+  color: var(--accent);
+  background: #e9f5f1;
+  border: 1px solid #cae8de;
+}
+
+.surfaceCard {
+  background: #fff;
   border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 18px;
+  border-radius: 16px;
 }
 
-.filterRow {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr)) minmax(320px, 1.2fr);
-  gap: 14px;
-  align-items: end;
+.elevatedCard {
+  box-shadow: 0 8px 18px rgba(41, 74, 65, 0.08);
 }
 
-.selectWrap {
+.appBtn {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+.appBtn:hover {
+  transform: translateY(-1px);
+}
+
+.appBtn.is-md {
+  min-height: 36px;
+  padding: 0 14px;
+  font-size: 12px;
+}
+
+.appBtn.is-sm {
+  min-height: 32px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+.appBtn.is-full {
+  width: 100%;
+}
+
+.appBtn.is-primary {
+  background: linear-gradient(120deg, #4f8a7a, #6a9e90);
+  color: #fff;
+  box-shadow: 0 8px 14px rgba(79, 138, 122, 0.25);
+}
+
+.appBtn.is-secondary {
+  background: #ecf7f3;
+  border-color: #c5e7dc;
+  color: #3d7365;
+}
+
+.appBtn.is-ghost {
+  background: #fff;
+  border-color: var(--line);
+  color: #3f5650;
+}
+
+.appBtn.is-success {
+  background: #ecfff4;
+  border-color: #a9e0bf;
+  color: var(--success);
+}
+
+.appBtn.is-danger {
+  background: #fff1f1;
+  border-color: #f1b2b2;
+  color: var(--danger);
+}
+
+.appBtn.is-lavender {
+  background: #f3ecff;
+  border-color: #dac8ff;
+  color: #6f46b3;
+}
+
+.appBtnIcon {
+  display: inline-flex;
+}
+
+.appBadge {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+}
+
+.appBadge.is-neutral {
+  background: #f3f8f6;
+  border-color: #d7e6e1;
+  color: #4f6860;
+}
+
+.appBadge.is-success {
+  background: #ecfff4;
+  border-color: #abdfc0;
+  color: var(--success);
+}
+
+.appBadge.is-warn {
+  background: #fff8ee;
+  border-color: #f1d3a6;
+  color: var(--warn);
+}
+
+.appBadge.is-danger {
+  background: #fff1f1;
+  border-color: #f5b2b2;
+  color: var(--danger);
+}
+
+.appBadge.is-info {
+  background: #edf5ff;
+  border-color: #b8d6f7;
+  color: var(--info);
+}
+
+.dataTableWrap {
+  margin-top: 12px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.dataTable {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+}
+
+.dataTable th {
+  padding: 10px;
+  text-align: left;
+  font-size: 12px;
+  color: #667d75;
+  letter-spacing: 0.03em;
+  background: #f2f8f5;
+  border-bottom: 1px solid var(--line);
+}
+
+.dataTable td {
+  padding: 10px;
+  font-size: 13px;
+  color: #30423b;
+  border-bottom: 1px solid #edf3f0;
+}
+
+.dataTableEmptyCell {
+  text-align: center;
+  color: var(--muted);
+}
+
+.appCheckbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.appCheckbox input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.appCheckboxUi {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border: 1px solid #b9d2ca;
+  background: #f5fbf8;
   position: relative;
 }
 
-.selectLabel {
+.appCheckbox input:checked + .appCheckboxUi {
+  background: linear-gradient(120deg, #4f8a7a, #6aa392);
+  border-color: #4f8a7a;
+}
+
+.appCheckbox input:checked + .appCheckboxUi::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.uiSelect {
+  position: relative;
+  min-width: 150px;
+  max-width: 100%;
+}
+
+.uiSelectLabel,
+.dateFieldLabel {
   display: block;
-  margin-bottom: 8px;
-  font-size: 12px;
+  margin-bottom: 6px;
   color: var(--muted);
+  font-size: 12px;
   font-weight: 700;
 }
 
-.selectBtn {
+.uiSelectButton {
   width: 100%;
-  border: 1px solid var(--line);
-  border-radius: 12px;
+  min-height: 34px;
+  border: 1px solid #cfe1db;
   background: #fff;
-  height: 42px;
-  padding: 0 12px;
+  border-radius: 10px;
+  padding: 6px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #425b54;
 }
 
-.selectValue {
-  font-size: 13px;
-  font-weight: 600;
+.uiSelectValue {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.selectMenu {
-  margin-top: 6px;
+.uiSelectArrow {
+  transition: transform 0.2s ease;
+}
+
+.uiSelectArrow.isOpen {
+  transform: rotate(180deg);
+}
+
+.uiSelectMenu {
   position: absolute;
-  z-index: 12;
+  top: calc(100% + 6px);
+  left: 0;
   width: 100%;
+  min-width: 170px;
+  z-index: 15;
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 6px;
   background: #fff;
-  box-shadow: 0 16px 22px rgba(16, 40, 75, 0.14);
+  box-shadow: 0 14px 24px rgba(38, 74, 64, 0.13);
+  padding: 6px;
 }
 
-.selectOption {
+.uiSelectOption {
   width: 100%;
   border: 0;
+  border-radius: 8px;
   background: transparent;
-  border-radius: 9px;
-  padding: 9px;
-  font-size: 13px;
   text-align: left;
-  cursor: pointer;
+  font-size: 12px;
+  padding: 8px;
+  margin: 2px 0px;
 }
 
-.selectOption.isActive,
-.selectOption:hover {
-  background: #edf3ff;
+.uiSelectOption:hover,
+.uiSelectOption.isActive {
+  background: #edf8f4;
 }
 
-.dateNavWrap {
-  display: grid;
-  grid-template-columns: 36px 1fr 36px;
-  gap: 10px;
-  align-items: end;
-}
-
-.dateNav {
-  margin-bottom: 2px;
-}
-
-.metricGrid {
-  margin-top: 18px;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(140px, 1fr));
-  gap: 12px;
-}
-
-.metricCard {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 11px 13px;
-  font-size: 13px;
-  font-weight: 700;
-  color: #18458e;
-}
-
-.tabsRow {
-  margin-top: 18px;
+.uiTabs {
+  margin-top: 12px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 12px;
 }
 
-.tabBtn {
-  border: 1px solid var(--line);
+.uiTab {
+  border: 1px solid #d2e3dd;
   background: #fff;
-  color: #536176;
+  color: #536b64;
   border-radius: 10px;
   padding: 7px 11px;
   font-size: 12px;
   font-weight: 700;
-  cursor: pointer;
 }
 
-.tabBtn.isActive {
+.uiTab.isActive {
   color: #fff;
-  border-color: var(--blue);
-  background: linear-gradient(130deg, #337ff5, #2366ce);
+  border-color: #5a9787;
+  background: linear-gradient(120deg, #4f8a7a, #6ea89a);
 }
 
-.teamSection {
-  margin-top: 14px;
+.dateField {
   display: grid;
+  gap: 6px;
+}
+
+.dateFieldControl {
+  border: 1px solid #cfe1db;
+  background: linear-gradient(120deg, #ffffff, #f3fbf8);
+  border-radius: 10px;
+  min-height: 34px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dateFieldControl input {
+  border: 0;
+  background: transparent;
+  color: #425b54;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.homePage,
+.staffPage,
+.myAttendancePage,
+.labourPage,
+.approvePage,
+.clockPage,
+.settingsPage,
+.helpPage {
+  margin-top: 16px;
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.homeStatsGrid,
+.staffStatsGrid,
+.myStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: 14px;
+}
+
+.homeStatCard,
+.staffStatCard,
+.myStatCard,
+.homePanel,
+.staffPanel,
+.myLogsPanel,
+.labourFilterCard,
+.labourTeamCard,
+.approveSummaryCard,
+.approveListCard,
+.clockSummaryCard,
+.clockListCard,
+.settingsCard,
+.helpPanel,
+.helpCard {
+  padding: 14px;
+}
+
+.homeStatCard,
+.staffStatCard,
+.myStatCard,
+.helpCard {
+  background: linear-gradient(120deg, #ffffff, #f7fcfa);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.staffStatsGrid .staffStatCard {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  box-shadow: 0 8px 16px rgba(57, 93, 83, 0.08);
+}
+
+.staffStatsGrid .staffStatCard::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4f8a7a, #7bb0a2);
+}
+
+.staffStatsGrid .staffStatCard svg {
+  margin-top: 2px;
+  color: #4f8a7a;
+  padding: 7px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #eaf6f2;
+  border: 1px solid #cfe7de;
+}
+
+.homeStatTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.homeStatCard h3,
+.staffStatCard h3,
+.myStatCard h4 {
+  margin: 10px 0;
+  font-size: 30px;
+}
+
+.myStatusCard {
+  border: 1px solid #cfe4dc;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(116, 179, 159, 0.24) 0%, rgba(116, 179, 159, 0) 42%),
+    linear-gradient(120deg, #ffffff 22%, #f2faf7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  box-shadow: 0 12px 24px rgba(54, 90, 80, 0.13);
+  padding: 18px 22px;
+}
+
+.myStatusCard h3 {
+  margin: 6px 0 10px;
+  font-size: 30px;
+  line-height: 1.1;
+}
+
+.myDateBadge {
+  border-color: #bcded2;
+  background: #ebf8f3;
+  color: #427a6b;
+}
+
+.trendBadge {
+  margin-top: 2px;
+}
+
+.homeBodyGrid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
   gap: 12px;
 }
 
-.teamCard {
-  background: #fff;
+.homePanel,
+.staffPanel,
+.myLogsPanel,
+.labourFilterCard,
+.labourTeamCard,
+.approveSummaryCard,
+.approveListCard,
+.clockSummaryCard,
+.clockListCard,
+.settingsCard,
+.helpPanel {
+  background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 12px;
+  border-radius: 18px;
+  min-width: 0;
 }
 
-.teamHeader {
+.panelHead,
+.staffPanelHead,
+.myLogsHead,
+.labourTeamHead,
+.approveSummaryHead,
+.approveListHead,
+.clockListHead,
+.settingsHead,
+.helpPanelHead {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  margin-bottom: 10px;
+}
+
+.panelHead h3,
+.staffPanelHead h3,
+.myLogsHead h3,
+.labourTeamHead h3,
+.approveListHead h3,
+.settingsHead h3,
+.helpPanelHead h3,
+.clockSummaryCard h3,
+.clockTimeline h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.pipelineList,
+.scheduleList,
+.activityList,
+.labourTeamList,
+.approveRows,
+.clockRows,
+.settingsToggleList,
+.faqList,
+.guideList,
+.labourMembers {
+  display: grid;
+  gap: 10px;
+}
+
+.pipelineRow,
+.scheduleRow,
+.activityRow,
+.labourMemberRow,
+.clockRow,
+.approveRow,
+.settingsToggleRow,
+.faqItem,
+.guideList > div {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.pipelineMeta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
   margin-bottom: 8px;
 }
 
-.teamHeader h3 {
-  margin: 0;
-  font-size: 15px;
-  color: #2b69c0;
+.progressTrack {
+  height: 8px;
+  border-radius: 99px;
+  background: #e6f0ec;
+  overflow: hidden;
 }
 
-.teamHeader h3 span {
-  color: #72829a;
-  font-weight: 600;
+.progressFill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #4f8a7a, #78ab9f);
 }
 
-.addMenuWrap {
-  position: relative;
-}
-
-.addBtn {
-  border: 0;
-  border-radius: 10px;
-  background: #f2e8ff;
-  color: #6f2ac4;
-  padding: 8px 10px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 12px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.addMenu {
-  position: absolute;
-  top: 110%;
-  right: 0;
-  width: 170px;
-  padding: 6px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 16px 22px rgba(16, 40, 75, 0.14);
-  z-index: 12;
-}
-
-.addMenu button {
-  width: 100%;
-  border: 0;
-  background: transparent;
-  border-radius: 9px;
-  padding: 9px;
-  font-size: 13px;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  cursor: pointer;
-}
-
-.addMenu button:hover {
-  background: #f4f6fb;
-}
-
-.memberGrid {
-  display: grid;
-  gap: 8px;
-}
-
-.memberRow {
+.scheduleRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  background: #fafbfd;
-  border: 1px solid #e7ecf4;
-  border-radius: 10px;
-  padding: 8px 10px;
 }
 
-.memberName {
+.dotStatus {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #44b18d;
+  box-shadow: 0 0 0 0 rgba(68, 177, 141, 0.55);
+  animation: dotPulse 1.6s infinite ease-in-out;
+}
+
+@keyframes dotPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(68, 177, 141, 0.48);
+  }
+
+  70% {
+    transform: scale(1.12);
+    box-shadow: 0 0 0 9px rgba(68, 177, 141, 0);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(68, 177, 141, 0);
+  }
+}
+
+.scheduleRow p,
+.activityRow p,
+.activityRow time,
+.approveReason,
+.helpCard p,
+.faqItem p,
+.guideList p,
+.clockSummaryCard p,
+.clockRow p,
+.clockTimeline p,
+.approveRow p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.staffFilters,
+.approveMetricPills,
+.clockSummaryPills,
+.labourMetrics,
+.approveActions,
+.myStatusActions {
   display: flex;
   align-items: center;
-  gap: 7px;
-  font-size: 13px;
-  color: #49576d;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
 }
 
-.statusPill {
+.approveSummaryCard {
+  background: linear-gradient(120deg, #f9fcfb, #f3faf7);
+}
+
+.approveListCard {
+  background: linear-gradient(120deg, #f9fcfb, #f6fbf9);
+}
+
+.approveRows {
+  gap: 12px;
+}
+
+.approveRow {
+  padding: 12px;
+}
+
+.labourFilters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 12px;
+  min-width: 0;
+}
+
+.labourTeamHead h3 span {
+  color: #6a7f78;
+  font-weight: 600;
+}
+
+.labourActionWrap {
+  position: relative;
+}
+
+.labourAddMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 170px;
+  z-index: 12;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 14px 24px rgba(38, 74, 64, 0.13);
+  padding: 6px;
+}
+
+.labourAddMenu button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+}
+
+.labourAddMenu button:hover {
+  background: #edf8f4;
+}
+
+.labourMemberRow,
+.approveRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.approveRow .appBadge {
+  margin-top: 4px;
+} 
+
+.labourMemberName {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.clockRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.clockTimeline {
+  border: 1px dashed #c5ddd5;
+  border-radius: 12px;
+  padding: 12px;
+  background: linear-gradient(120deg, #ffffff, #f4faf8);
+  margin-top: 10px;
+}
+
+.clockTimeline h4 {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #2f4f45;
+}
+
+.clockTimeline p {
+  padding-left: 6px;
+  border-left: 2px solid #d5e8e1;
+}
+
+.settingsHead,
+.helpPanelHead {
+  justify-content: flex-start;
+}
+
+.settingsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 12px;
+  min-width: 0;
+}
+
+.settingsGrid label,
+.clockListHead label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.clockListHead {
+  gap: 12px;
+}
+
+.settingsGrid input {
+  width: 100%;
+  border: 1px solid #cfe1db;
+  background: linear-gradient(120deg, #ffffff, #f3fbf8);
+  border-radius: 10px;
+  height: 36px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #415952;
+}
+
+.settingsToggleRow {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.togglePill {
+  border: 1px solid #e6b6b6;
+  background: #fff2f2;
+  color: var(--danger);
   border-radius: 999px;
+  padding: 4px 8px;
   font-size: 11px;
   font-weight: 800;
-  padding: 5px 10px;
-  border: 1px solid transparent;
 }
 
-.statusPill.pending {
-  color: var(--orange);
-  background: var(--orange-soft);
-  border-color: #f9d29f;
+.togglePill.isOn {
+  border-color: #b8e3ca;
+  background: #effff6;
+  color: var(--success);
 }
 
-.statusPill.at-work {
-  color: var(--blue);
-  background: #eef5ff;
-  border-color: #bcd5ff;
+.helpCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  gap: 12px;
 }
 
-.statusPill.present {
-  color: var(--green);
-  background: var(--green-soft);
-  border-color: #9ddfba;
+.helpCard {
+  display: grid;
+  gap: 4px;
+  text-align: left;
 }
 
-.statusPill.absent {
-  color: var(--red);
-  background: var(--red-soft);
-  border-color: #f5afaf;
-}
-
-.emptyState {
-  border: 1px dashed var(--line);
-  border-radius: 12px;
-  padding: 22px;
-  text-align: center;
-  color: var(--muted);
-  background: #fff;
+.faqItem button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2f433d;
 }
 
 @media (max-width: 1180px) {
-  .crmApp {
-    padding: 14px;
-    gap: 12px;
+  .homeStatsGrid,
+  .staffStatsGrid,
+  .myStatsGrid {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
   }
 
-  .crmHeader {
-    flex-wrap: wrap;
+  .homeBodyGrid,
+  .settingsGrid,
+  .labourFilters,
+  .helpCardsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .myStatusCard,
+  .myLogsHead,
+  .staffPanelHead,
+  .approveSummaryHead,
+  .approveRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .staffFilters,
+  .approveMetricPills,
+  .clockSummaryPills,
+  .labourMetrics,
+  .approveActions,
+  .myStatusActions {
+    width: 100%;
   }
 
   .headerActions {
-    width: 100%;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    width: auto;
+    flex-wrap: nowrap;
   }
 
   .searchBox {
-    width: 100%;
+    width: auto;
   }
 
   .searchBox input {
     min-width: 0;
     width: 100%;
   }
-
-  .filterRow {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .dateNavWrap {
-    grid-column: 1 / -1;
-  }
-
-  .metricGrid {
-    grid-template-columns: repeat(2, minmax(140px, 1fr));
-  }
 }
 
 @media (max-width: 860px) {
   .crmApp {
-    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
   }
 
-  .crmSidebar,
-  .crmSidebar.isCollapsed {
-    width: 100%;
+  .iconBtn.mobileMenuBtn {
+    display: grid;
+  }
+
+  .crmSidebar {
+    position: fixed;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    width: 290px;
+    max-width: calc(100vw - 20px);
+    z-index: 50;
+    transform: translateX(-120%);
+    transition: transform 0.28s ease;
+    box-shadow: 0 22px 34px rgba(33, 59, 51, 0.22);
+  }
+
+  .crmSidebar.isMobileOpen {
+    transform: translateX(0);
+  }
+
+  .crmSidebar.isCollapsed,
+  .crmSidebar {
+    width: 290px;
   }
 
   .crmSidebar.isCollapsed .brandText,
@@ -563,29 +1226,90 @@ input {
     display: grid;
   }
 
-  .filterRow {
-    grid-template-columns: 1fr;
+  .crmSidebar.isCollapsed .sidebarTop {
+    flex-direction: row;
+    align-items: center;
   }
 
-  .dateNavWrap {
-    grid-column: auto;
+  .crmSidebar.isCollapsed .menuItem {
+    justify-content: flex-start;
+  }
+
+  .sidebarBackdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(18, 33, 29, 0.28);
+    border: 0;
+    z-index: 40;
+  }
+
+  .profileBtn,
+  .searchBox {
+    position: relative;
+    z-index: 1;
+  }
+
+  .profileBtn span {
+    display: none;
+  }
+
+  .myStatusActions,
+  .approveActions {
+    width: 100%;
+  }
+
+  .myActionBtn,
+  .appBtn,
+  .clockPrimaryBtn {
+    justify-content: center;
   }
 }
 
 @media (max-width: 560px) {
-  .dashboardCard,
   .crmHeader,
-  .crmSidebar {
-    border-radius: 16px;
-    padding: 14px;
+  .homePanel,
+  .homeStatCard,
+  .staffStatCard,
+  .myStatCard,
+  .myStatusCard,
+  .staffPanel,
+  .myLogsPanel,
+  .labourFilterCard,
+  .labourTeamCard,
+  .approveSummaryCard,
+  .approveListCard,
+  .clockSummaryCard,
+  .clockListCard,
+  .settingsCard,
+  .helpPanel,
+  .helpCard {
+    border-radius: 14px;
+    padding: 12px;
   }
 
-  .metricGrid {
+  .crmHeader {
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .homeStatCard h3,
+  .staffStatCard h3,
+  .myStatCard h4,
+  .myStatusCard h3 {
+    font-size: 24px;
+  }
+
+  .labourMemberRow,
+  .approveRow,
+  .clockRow {
     grid-template-columns: 1fr;
-  }
-
-  .memberRow {
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .dataTable {
+    min-width: 560px;
   }
 }
